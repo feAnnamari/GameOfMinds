@@ -82,6 +82,10 @@ public class Kapu extends Thread{
         }
         vezerlo.fakaputindit();
     }
+
+    public void setVege(boolean vege) {
+        this.vege = vege;
+    }
     
     
 }

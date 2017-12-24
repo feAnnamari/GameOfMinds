@@ -19,6 +19,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import felulet.BalPanel;
 import felulet.JobbPanel;
+import felulet.SugoFrame;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.util.Random;
@@ -31,8 +32,7 @@ public class Vezerlo {
     private JobbPanel jobbPanel;
     private BalPanel balPanel;
     private MainFrame frame;
-    
-    
+    private SugoFrame sugoFrame;
     
     private final String ZENE_ELERES = "/zene/zene.mp3";
     private final String RACS_HANG_ELERES = "/zene/racs_zaras.mp3";
@@ -72,8 +72,6 @@ public class Vezerlo {
     private List<Ikon> tmpikonok = new ArrayList<>();
     private List<Ikon> megoldasLista = new ArrayList<>();
     private List<Image> kiertekeloKepek = new ArrayList<>();
-
-    
 
     public Vezerlo(JobbPanel jobbPanel, BalPanel balPanel, MainFrame frame) {
         this.jobbPanel = jobbPanel;
@@ -190,7 +188,7 @@ public class Vezerlo {
         kirajzolandoKepek.clear();
         tmpikonok.clear();
         megoldasLista.clear();
-        megoldastGyart();
+        
         fuggolegesKor = 1;
         vizszintesKor = 1;
         frissit();
@@ -206,7 +204,7 @@ public class Vezerlo {
         zeneInditas();
     }
 
-    private void megoldastGyart() {
+    public void megoldastGyart() {
         Ikon ikon;
         Image kep = null;
         int listaMeret = kepek.size();
@@ -296,6 +294,11 @@ public class Vezerlo {
     }
 
     private void megoldastKitakar() {
+        if(fakapu!=null&&racs!=null)
+        {
+            fakapu.setVege(true);
+            racs.setVege(true);
+        }
         Image kep = new ImageIcon(this.getClass().getResource(FAKAPU_ELERES)).getImage();
 //        Image kep, int szelesseg, int magassag, int kepX, int kepY, double dy, long ido
         fakapu = new Kapu(kep, KAPU_SZELESSEG, KAPU_MAGASSAG, ELSO_IKON_KEPX-VIZSZINTES_KEPKOZ, 0, KAPU_LEPESKOZ, KAPU_LEPESIDO, this);
@@ -328,6 +331,20 @@ public class Vezerlo {
         racsHang.setZeneFajlEleres(RACS_HANG_ELERES);
         racsHang.start();
         racs.start();
+    }
+
+    public void sugotMegnyit() {
+        if(sugoFrame == null)
+        {
+            sugoFrame = new SugoFrame();
+            sugoFrame.getSugoPanel2().setVezerlo(this);
+        }
+            sugoFrame.setVisible(true);
+        
+    }
+
+    public void sugotElrejt() {
+        sugoFrame.setVisible(false);
     }
     
     

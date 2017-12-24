@@ -177,6 +177,11 @@ public class JobbPanel extends javax.swing.JPanel {
 
         btnSugo.setBackground(new java.awt.Color(51, 51, 51));
         btnSugo.setText("?");
+        btnSugo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSugoActionPerformed(evt);
+            }
+        });
 
         btnVissza.setBackground(new java.awt.Color(51, 51, 51));
         btnVissza.setFont(new java.awt.Font("Vivaldi", 0, 48)); // NOI18N
@@ -311,6 +316,7 @@ public class JobbPanel extends javax.swing.JPanel {
 
     private void btnNewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewGameActionPerformed
         vezerlo.alaphelyzetbeallit();
+        vezerlo.megoldastGyart();
     }//GEN-LAST:event_btnNewGameActionPerformed
 
     private void btnTalcaraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTalcaraActionPerformed
@@ -320,6 +326,10 @@ public class JobbPanel extends javax.swing.JPanel {
     private void btnKilepesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKilepesActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnKilepesActionPerformed
+
+    private void btnSugoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSugoActionPerformed
+        vezerlo.sugotMegnyit();
+    }//GEN-LAST:event_btnSugoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
