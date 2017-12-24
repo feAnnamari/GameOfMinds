@@ -22,6 +22,8 @@ public class Kapu extends Thread{
     private double dy;
     private long ido;
     private Vezerlo vezerlo;
+    private volatile boolean lezart;
+    private volatile boolean vege;
     
     public void rajzol(Graphics g)
     {
@@ -39,21 +41,47 @@ public class Kapu extends Thread{
         this.vezerlo = vezerlo;
     }
 
-
-
     @Override
     public void run() {
         try {
-            while(kepY>-magassag)
+            while(!vege)
             {
-                kepY = kepY-dy; 
-                vezerlo.frissit();
-                Thread.sleep(ido);
+                if(!lezart)
+                {
+                    lefelemegy();
+                }
+                if(lezart)
+                {
+                    felfelemegy();
+                }
             }
-            vezerlo.fakaputindit();
             
         } catch (InterruptedException ex) {
             Logger.getLogger(Kapu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public void setLezart(boolean lezart) {
+        this.lezart = lezart;
+    }
+
+    private void lefelemegy() throws InterruptedException {
+        while (kepY < 0) {
+            kepY = kepY + dy;
+            vezerlo.frissit();
+            Thread.sleep(ido);
+        }
+    }
+
+    private void felfelemegy() throws InterruptedException {
+        while (kepY > -magassag) {
+            kepY = kepY - dy;
+            vezerlo.frissit();
+            Thread.sleep(ido);
+            vege = true;
+        }
+        vezerlo.fakaputindit();
+    }
+    
+    
 }

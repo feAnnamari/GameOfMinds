@@ -8,6 +8,7 @@ package vezerlo;
 import alaposztalyok.Ikon;
 import alaposztalyok.Kapu;
 import alaposztalyok.Sor;
+import alaposztalyok.Zene;
 import java.awt.Image;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,6 +34,9 @@ public class Vezerlo {
     
     
     
+    private final String ZENE_ELERES = "/zene/zene.mp3";
+    private final String RACS_HANG_ELERES = "/zene/racs_zaras.mp3";
+    private Zene zene;
     
     private final String IKON_ELERES = "/kepek/";
     private final int IKON_SZAM = 9;
@@ -50,7 +54,7 @@ public class Vezerlo {
     private final int KAPU_MAGASSAG = 73;
     private final String RACS_ELERES = "/kepek/racs.png";
     private final String FAKAPU_ELERES = "/kepek/fakapu.png";
-    private final double KAPU_LEPESKOZ = 1;
+    private final double KAPU_LEPESKOZ = 1.1;
     private final int KAPU_LEPESIDO = 20;
     private int KOROK_SZAMA = 8;
     
@@ -105,7 +109,6 @@ public class Vezerlo {
             case 2: kepX = ELSO_IKON_KEPX + IKON_SZELESSEG + VIZSZINTES_KEPKOZ; break;
             case 3: kepX = ELSO_IKON_KEPX + 2*IKON_SZELESSEG + 2*VIZSZINTES_KEPKOZ; break;
             case 4: kepX = ELSO_IKON_KEPX + 3*IKON_SZELESSEG + 3*VIZSZINTES_KEPKOZ; break;
-            default: kepX = ELSO_IKON_KEPX;
         }
         switch(fuggolegesKor)
         {
@@ -117,10 +120,9 @@ public class Vezerlo {
             case 6: kepY = ELSO_IKON_KEPY - 5*IKON_MAGASSAG - 5*FUGGOLEGES_KEPKOZ; break;
             case 7: kepY = ELSO_IKON_KEPY - 6*IKON_MAGASSAG - 6*FUGGOLEGES_KEPKOZ; break;
             case 8: kepY = ELSO_IKON_KEPY - 7*IKON_MAGASSAG - 7*FUGGOLEGES_KEPKOZ; break;
-            default: kepY = ELSO_IKON_KEPY;
         }
         Ikon ikon = null;
-        if(vizszintesKor!=5)  
+        if(vizszintesKor!=5&&fuggolegesKor<KOROK_SZAMA+1)  
         {
             ikon = new Ikon(valasztottKep, IKON_SZELESSEG, IKON_MAGASSAG, kepX, kepY);
             ikon.setSorSzam(iconIndex);
@@ -130,7 +132,7 @@ public class Vezerlo {
             jobbPanel.ikonGombAktivitastAllit(iconIndex, false);
         }
         
-        if(vizszintesKor==5)
+        if(vizszintesKor==5&&fuggolegesKor<KOROK_SZAMA+1)
         {
             jobbPanel.keszenAlloGombBeallit(true);
         }
@@ -181,7 +183,7 @@ public class Vezerlo {
         }
         tmpikonok.clear();
         balPanel.labeltAktival(fuggolegesKor);
-        jobbPanel.osszesIkonGombotAktival();
+        jobbPanel.osszesIkonGombotAktival(true);
     }
 
     public void alaphelyzetbeallit() {
@@ -194,12 +196,14 @@ public class Vezerlo {
         frissit();
         jobbPanel.keszenAlloGombBeallit(false);
         balPanel.beallitas();
-        jobbPanel.osszesIkonGombotAktival();
+        jobbPanel.osszesIkonGombotAktival(true);
     }
 
     void beallitas() {
         kepFeltoltes();
         alaphelyzetbeallit();
+        zene = new Zene();
+        zeneInditas();
     }
 
     private void megoldastGyart() {
@@ -295,8 +299,10 @@ public class Vezerlo {
         Image kep = new ImageIcon(this.getClass().getResource(FAKAPU_ELERES)).getImage();
 //        Image kep, int szelesseg, int magassag, int kepX, int kepY, double dy, long ido
         fakapu = new Kapu(kep, KAPU_SZELESSEG, KAPU_MAGASSAG, ELSO_IKON_KEPX-VIZSZINTES_KEPKOZ, 0, KAPU_LEPESKOZ, KAPU_LEPESIDO, this);
+        fakapu.setLezart(true);
         kep = new ImageIcon(this.getClass().getResource(RACS_ELERES)).getImage();
-        racs = new Kapu(kep, KAPU_SZELESSEG, KAPU_MAGASSAG, ELSO_IKON_KEPX-VIZSZINTES_KEPKOZ, 0, KAPU_LEPESKOZ, KAPU_LEPESIDO, this);   
+        racs = new Kapu(kep, KAPU_SZELESSEG, KAPU_MAGASSAG, ELSO_IKON_KEPX-VIZSZINTES_KEPKOZ, -KAPU_MAGASSAG, KAPU_LEPESKOZ, KAPU_LEPESIDO, this);   
+        racsotLevisz();        
     }
 
     public void frissit() {
@@ -308,6 +314,19 @@ public class Vezerlo {
     }
 
     private void jatekVege() {
+        jobbPanel.osszesIkonGombotAktival(false);
+        racs.setLezart(true);
+    }
+
+    private void zeneInditas() {
+        zene.setZeneFajlEleres(ZENE_ELERES);
+        zene.start();
+    }
+
+    private void racsotLevisz() {
+        Zene racsHang = new Zene();
+        racsHang.setZeneFajlEleres(RACS_HANG_ELERES);
+        racsHang.start();
         racs.start();
     }
     
