@@ -5,6 +5,9 @@
  */
 package felulet;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import vezerlo.Vezerlo;
 
 /**
@@ -13,7 +16,9 @@ import vezerlo.Vezerlo;
  */
 public class SugoPanel extends javax.swing.JPanel {
 
+
     private Vezerlo vezerlo;
+    private Image hatter = new ImageIcon(this.getClass().getResource("/kepek/sugo.png")).getImage();
     
     public SugoPanel() {
         initComponents();
@@ -21,6 +26,13 @@ public class SugoPanel extends javax.swing.JPanel {
 
     public void setVezerlo(Vezerlo vezerlo) {
         this.vezerlo = vezerlo;
+    }
+    
+        @Override
+        protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        int kezdox, kezdoy, szelesseg, magassag;
+	g.drawImage(hatter, 0, 0, this.getWidth(), this.getHeight(), this); 
     }
 
     
@@ -35,7 +47,9 @@ public class SugoPanel extends javax.swing.JPanel {
 
         btnOK = new javax.swing.JButton();
 
-        btnOK.setText("OK");
+        btnOK.setBackground(new java.awt.Color(51, 51, 51));
+        btnOK.setFont(new java.awt.Font("Vivaldi", 0, 36)); // NOI18N
+        btnOK.setText("Rendben");
         btnOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOKActionPerformed(evt);
@@ -47,15 +61,15 @@ public class SugoPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(309, Short.MAX_VALUE)
-                .addComponent(btnOK, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(249, Short.MAX_VALUE)
+                .addComponent(btnOK)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(262, Short.MAX_VALUE)
-                .addComponent(btnOK)
+                .addContainerGap(229, Short.MAX_VALUE)
+                .addComponent(btnOK, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents

@@ -7,7 +7,6 @@ package vezerlo;
 
 import alaposztalyok.Ikon;
 import alaposztalyok.Kapu;
-import alaposztalyok.Sor;
 import alaposztalyok.Zene;
 import java.awt.Image;
 import java.io.IOException;
@@ -172,8 +171,7 @@ public class Vezerlo {
 
     public void keszenallas() {
         kiertekel();
-        Sor sor;
-        sor = new Sor(fuggolegesKor, kirajzolandoKepek);
+
         fuggolegesKor++;
         vizszintesKor=1;
         for (Ikon ikon : tmpikonok) {
@@ -181,7 +179,10 @@ public class Vezerlo {
         }
         tmpikonok.clear();
         balPanel.labeltAktival(fuggolegesKor);
-        jobbPanel.osszesIkonGombotAktival(true);
+        if(fuggolegesKor!=KOROK_SZAMA+1)
+        {
+            jobbPanel.osszesIkonGombotAktival(true);
+        }
     }
 
     public void alaphelyzetbeallit() {
@@ -202,6 +203,7 @@ public class Vezerlo {
         alaphelyzetbeallit();
         zene = new Zene();
         zeneInditas();
+        jobbPanel.osszesIkonGombotAktival(false);
     }
 
     public void megoldastGyart() {

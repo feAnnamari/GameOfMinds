@@ -11,9 +11,9 @@ package felulet;
  */
 public class SugoFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form SugoFrame
-     */
+    private final int SZELESSEG = 350;
+    private final int MAGASSAG = 280;
+    
     public SugoFrame() {
         setUndecorated(true);
         initComponents();
@@ -74,6 +74,8 @@ public class SugoFrame extends javax.swing.JFrame {
 
     private void beallitas() {
         this.setLocationRelativeTo(null);
+        this.setSize(SZELESSEG, MAGASSAG);
+        setAlwaysOnTop(true);
     }
 
     public SugoPanel getSugoPanel2() {
