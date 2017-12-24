@@ -123,9 +123,11 @@ public class Vezerlo {
         if(vizszintesKor!=5)  
         {
             ikon = new Ikon(valasztottKep, IKON_SZELESSEG, IKON_MAGASSAG, kepX, kepY);
+            ikon.setSorSzam(iconIndex);
             jobbPanel.keszenAlloGombBeallit(false);
             tmpikonok.add(ikon);
             vizszintesKor++;
+            jobbPanel.ikonGombAktivitastAllit(iconIndex, false);
         }
         
         if(vizszintesKor==5)
@@ -145,9 +147,9 @@ public class Vezerlo {
                 kep = new ImageIcon(this.getClass().getResource(IKON_ELERES + "0" + i + "_ikon.png")).getImage();
                 kepek.add(kep);
         }
-        kep = new ImageIcon(this.getClass().getResource(IKON_ELERES + "kiertekeles_feher.png")).getImage();
-        kiertekeloKepek.add(kep);
         kep = new ImageIcon(this.getClass().getResource(IKON_ELERES + "kiertekeles_fekete.png")).getImage();
+        kiertekeloKepek.add(kep);
+        kep = new ImageIcon(this.getClass().getResource(IKON_ELERES + "kiertekeles_feher.png")).getImage();
         kiertekeloKepek.add(kep);
     }
 
@@ -156,6 +158,7 @@ public class Vezerlo {
     public void visszaVon() {
         vizszintesKor--;
         int index = tmpikonok.size()-1;
+        jobbPanel.ikonGombAktivitastAllit(tmpikonok.get(index).getSorSzam(), true);
         tmpikonok.remove(index);
         frissit();
         if (tmpikonok.isEmpty()) {
@@ -178,6 +181,7 @@ public class Vezerlo {
         }
         tmpikonok.clear();
         balPanel.labeltAktival(fuggolegesKor);
+        jobbPanel.osszesIkonGombotAktival();
     }
 
     public void alaphelyzetbeallit() {
@@ -190,6 +194,7 @@ public class Vezerlo {
         frissit();
         jobbPanel.keszenAlloGombBeallit(false);
         balPanel.beallitas();
+        jobbPanel.osszesIkonGombotAktival();
     }
 
     void beallitas() {
@@ -199,19 +204,24 @@ public class Vezerlo {
 
     private void megoldastGyart() {
         Ikon ikon;
-        Image kep;
+        Image kep = null;
         int listaMeret = kepek.size();
-        int randomindex;
-        
+        int randomindex = 0;
+        List<Image> tmpkepek = new ArrayList<>();
         int kepX;
         for (int i = 0; i < 4; i++) {
-            randomindex = (int) (random.nextFloat()*listaMeret);
-            kep = kepek.get(randomindex);
+            do {
+                randomindex = (int) (random.nextFloat() * listaMeret);
+                kep = kepek.get(randomindex);
+            } while (tmpkepek.contains(kep));
+            tmpkepek.add(kep);
+            
             kepX = ELSO_IKON_KEPX + i*IKON_SZELESSEG + i*VIZSZINTES_KEPKOZ;
             //Image kep, int szelesseg, int magassag, int kepX, int kepY
             ikon = new Ikon(kep, IKON_SZELESSEG, IKON_MAGASSAG, kepX, FUGGOLEGES_KEPKOZ);
             megoldasLista.add(ikon);
         }
+        tmpkepek.clear();
         megoldastKitakar();
     }
 
@@ -233,7 +243,7 @@ public class Vezerlo {
         }
         //Image kep, int szelesseg, int magassag, int kepX, int kepY
         int hanyadikkep = 1;
-        int feherekSzama = 0;
+        int feketekSzama = 0;
         
         for (int i = 0; i < tmpikonok.size(); i++) 
         {
@@ -252,7 +262,7 @@ public class Vezerlo {
                 ikon = new Ikon(kep, KIERTEKELES_KEPSZELESSEG, KIERTEKELES_KEPMAGASSAG, kepX, kepY);
                 kirajzolandoKepek.add(ikon);
                 hanyadikkep++;
-                feherekSzama++;
+                feketekSzama++;
             }
             else if(megoldasLista.contains(tmpikonok.get(i)))
             {
@@ -270,7 +280,7 @@ public class Vezerlo {
         {
             jatekVege();
         }
-        if(feherekSzama==4)
+        if(feketekSzama==4)
         {
             jatekVege();
             nyert = true;

@@ -17,6 +17,10 @@ public class Ikon {
     private Image kep;
     private int szelesseg, magassag;
     private int kepX, kepY;
+    private int sorSzam;
+
+
+
     
     public void rajzol(Graphics g)
     {
@@ -62,6 +66,15 @@ public class Ikon {
         this.kepX = kepX;
         this.kepY = kepY;
     }
+    
+    public int getSorSzam() {
+        return sorSzam;
+    }
+
+    public void setSorSzam(int sorSzam) {
+        this.sorSzam = sorSzam;
+    }
+    
     
     
     

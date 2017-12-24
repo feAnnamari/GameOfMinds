@@ -358,4 +358,32 @@ public class JobbPanel extends javax.swing.JPanel {
     public void visszaGombValtas(boolean aktivitas) {
         btnVissza.setEnabled(aktivitas);
     }
+
+    public void osszesIkonGombotAktival() {
+        btnIcon1.setEnabled(true);
+        btnIcon2.setEnabled(true);
+        btnIcon3.setEnabled(true);
+        btnIcon4.setEnabled(true);
+        btnIcon5.setEnabled(true);
+        btnIcon6.setEnabled(true);
+        btnIcon7.setEnabled(true);
+        btnIcon8.setEnabled(true);
+        btnIcon9.setEnabled(true);
+        
+    }
+
+    public void ikonGombAktivitastAllit(int iconIndex, boolean b) {
+        switch(iconIndex)
+        {
+            case 1: btnIcon1.setEnabled(b); break;
+            case 2: btnIcon2.setEnabled(b); break;
+            case 3: btnIcon3.setEnabled(b); break;
+            case 4: btnIcon4.setEnabled(b); break;
+            case 5: btnIcon5.setEnabled(b); break;
+            case 6: btnIcon6.setEnabled(b); break;
+            case 7: btnIcon7.setEnabled(b); break;
+            case 8: btnIcon8.setEnabled(b); break;
+            case 9: btnIcon9.setEnabled(b); break;
+        }
+    }
 }
