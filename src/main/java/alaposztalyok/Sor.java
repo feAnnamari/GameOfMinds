@@ -18,7 +18,5 @@ public class Sor {
     public Sor(int sorSzam, List<Ikon> ikonok) {
         this.sorSzam = sorSzam;
         this.ikonok = ikonok;
-    }
-    
-    
+    }  
 }

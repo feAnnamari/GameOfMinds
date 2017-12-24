@@ -32,16 +32,13 @@ public class BalPanel extends javax.swing.JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         int kezdox, kezdoy, szelesseg, magassag;
-	g.drawImage(hatter, 0, 0, this.getWidth(), this.getHeight(), null); 
+	g.drawImage(hatter, 0, 0, this.getWidth(), this.getHeight(), this); 
         if(vezerlo!=null)
         {
             vezerlo.rajzol(g);
         }
-        
     }
 
-    
-    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,64 +49,64 @@ public class BalPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lblMasodik = new javax.swing.JLabel();
+        lblElso = new javax.swing.JLabel();
+        lblHarmadik = new javax.swing.JLabel();
+        lblOtodik = new javax.swing.JLabel();
+        lblNegyedik = new javax.swing.JLabel();
+        lblHatodik = new javax.swing.JLabel();
+        lblHetedik = new javax.swing.JLabel();
+        lblNyolcadik = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
 
-        jLabel1.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel1.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("2.");
+        lblMasodik.setBackground(new java.awt.Color(153, 153, 153));
+        lblMasodik.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
+        lblMasodik.setForeground(new java.awt.Color(204, 204, 204));
+        lblMasodik.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMasodik.setText("2.");
 
-        jLabel2.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel2.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("1.");
+        lblElso.setBackground(new java.awt.Color(153, 153, 153));
+        lblElso.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
+        lblElso.setForeground(new java.awt.Color(204, 204, 204));
+        lblElso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblElso.setText("1.");
 
-        jLabel3.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel3.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("3.");
+        lblHarmadik.setBackground(new java.awt.Color(153, 153, 153));
+        lblHarmadik.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
+        lblHarmadik.setForeground(new java.awt.Color(204, 204, 204));
+        lblHarmadik.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHarmadik.setText("3.");
 
-        jLabel4.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel4.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("5.");
+        lblOtodik.setBackground(new java.awt.Color(153, 153, 153));
+        lblOtodik.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
+        lblOtodik.setForeground(new java.awt.Color(204, 204, 204));
+        lblOtodik.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblOtodik.setText("5.");
 
-        jLabel5.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel5.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("4.");
+        lblNegyedik.setBackground(new java.awt.Color(153, 153, 153));
+        lblNegyedik.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
+        lblNegyedik.setForeground(new java.awt.Color(204, 204, 204));
+        lblNegyedik.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNegyedik.setText("4.");
 
-        jLabel6.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel6.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("6.");
+        lblHatodik.setBackground(new java.awt.Color(153, 153, 153));
+        lblHatodik.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
+        lblHatodik.setForeground(new java.awt.Color(204, 204, 204));
+        lblHatodik.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHatodik.setText("6.");
 
-        jLabel7.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel7.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("7.");
+        lblHetedik.setBackground(new java.awt.Color(153, 153, 153));
+        lblHetedik.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
+        lblHetedik.setForeground(new java.awt.Color(204, 204, 204));
+        lblHetedik.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHetedik.setText("7.");
 
-        jLabel8.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel8.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("8.");
+        lblNyolcadik.setBackground(new java.awt.Color(153, 153, 153));
+        lblNyolcadik.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
+        lblNyolcadik.setForeground(new java.awt.Color(204, 204, 204));
+        lblNyolcadik.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNyolcadik.setText("8.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -118,50 +115,74 @@ public class BalPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(199, 199, 199)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblNyolcadik, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblHetedik, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblHatodik, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblOtodik, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblHarmadik, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMasodik, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblElso, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNegyedik, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(428, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(116, Short.MAX_VALUE)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNyolcadik, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblHetedik, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblHatodik, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblOtodik, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNegyedik, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblHarmadik, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblMasodik, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblElso, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel lblElso;
+    private javax.swing.JLabel lblHarmadik;
+    private javax.swing.JLabel lblHatodik;
+    private javax.swing.JLabel lblHetedik;
+    private javax.swing.JLabel lblMasodik;
+    private javax.swing.JLabel lblNegyedik;
+    private javax.swing.JLabel lblNyolcadik;
+    private javax.swing.JLabel lblOtodik;
     // End of variables declaration//GEN-END:variables
+
+    public void labeltAktival(int fuggolegesKor) {
+        switch (fuggolegesKor) 
+            {
+                case 1: lblElso.setVisible(true); break;
+                case 2: lblMasodik.setVisible(true); break;
+                case 3: lblHarmadik.setVisible(true); break;
+                case 4: lblNegyedik.setVisible(true); break;
+                case 5: lblOtodik.setVisible(true); break;
+                case 6: lblHatodik.setVisible(true); break;
+                case 7: lblHetedik.setVisible(true); break;
+                case 8: lblNyolcadik.setVisible(true); break;
+            }
+    }
+
+    public void beallitas() {
+        lblMasodik.setVisible(false);
+        lblHarmadik.setVisible(false);
+        lblNegyedik.setVisible(false);
+        lblOtodik.setVisible(false);
+        lblHatodik.setVisible(false);
+        lblHetedik.setVisible(false);
+        lblNyolcadik.setVisible(false);
+    }
 
 
 }

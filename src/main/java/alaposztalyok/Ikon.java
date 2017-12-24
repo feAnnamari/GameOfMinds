@@ -22,10 +22,6 @@ public class Ikon {
     {
         g.drawImage(kep, kepX, kepY, szelesseg, magassag, null);
     }
-
-    public Ikon(Image kep) {
-        this.kep = kep;
-    }
     
     public Ikon(Image kep, int szelesseg, int magassag, int kepX, int kepY) {
         this.kep = kep;

@@ -6,6 +6,7 @@
 package vezerlo;
 
 import alaposztalyok.Ikon;
+import alaposztalyok.Kapu;
 import alaposztalyok.Sor;
 import java.awt.Image;
 import java.io.IOException;
@@ -45,8 +46,20 @@ public class Vezerlo {
     private final int ELSO_KIERTEKELES_IKON_KEPY = 627;
     private final int KIERTEKELES_KEPMAGASSAG = 60;
     private final int KIERTEKELES_KEPSZELESSEG = 40;
+    private final int KAPU_SZELESSEG = 234;
+    private final int KAPU_MAGASSAG = 73;
+    private final String RACS_ELERES = "/kepek/racs.png";
+    private final String FAKAPU_ELERES = "/kepek/fakapu.png";
+    private final double KAPU_LEPESKOZ = 1;
+    private final int KAPU_LEPESIDO = 20;
+    private int KOROK_SZAMA = 8;
+    
     private int vizszintesKor = 1;
     private int fuggolegesKor = 1;
+    private boolean nyert;
+    
+    private Kapu fakapu;
+    private Kapu racs;
     
     Random random = new Random();
     
@@ -56,13 +69,14 @@ public class Vezerlo {
     private List<Ikon> megoldasLista = new ArrayList<>();
     private List<Image> kiertekeloKepek = new ArrayList<>();
 
+    
+
     public Vezerlo(JobbPanel jobbPanel, BalPanel balPanel, MainFrame frame) {
         this.jobbPanel = jobbPanel;
         this.balPanel = balPanel;
         this.frame = frame;
     }
-    
-    
+
     public void rajzol(Graphics g) {
         for (Ikon ikon : kirajzolandoKepek) {
             ikon.rajzol(g);
@@ -72,6 +86,11 @@ public class Vezerlo {
         }
         for (Ikon ikon : megoldasLista) {
             ikon.rajzol(g);
+        }
+        if(fakapu != null && racs!=null)
+        {
+            fakapu.rajzol(g);
+            racs.rajzol(g);
         }
     }
 
@@ -114,7 +133,7 @@ public class Vezerlo {
             jobbPanel.keszenAlloGombBeallit(true);
         }
         
-        balPanel.repaint();
+        frissit();
         jobbPanel.visszaGombValtas(true);
         
 
@@ -138,7 +157,7 @@ public class Vezerlo {
         vizszintesKor--;
         int index = tmpikonok.size()-1;
         tmpikonok.remove(index);
-        balPanel.repaint();
+        frissit();
         if (tmpikonok.isEmpty()) {
             jobbPanel.visszaGombValtas(false);
         }
@@ -158,6 +177,7 @@ public class Vezerlo {
             kirajzolandoKepek.add(ikon);
         }
         tmpikonok.clear();
+        balPanel.labeltAktival(fuggolegesKor);
     }
 
     public void alaphelyzetbeallit() {
@@ -167,8 +187,9 @@ public class Vezerlo {
         megoldastGyart();
         fuggolegesKor = 1;
         vizszintesKor = 1;
-        balPanel.repaint();
+        frissit();
         jobbPanel.keszenAlloGombBeallit(false);
+        balPanel.beallitas();
     }
 
     void beallitas() {
@@ -191,6 +212,7 @@ public class Vezerlo {
             ikon = new Ikon(kep, IKON_SZELESSEG, IKON_MAGASSAG, kepX, FUGGOLEGES_KEPKOZ);
             megoldasLista.add(ikon);
         }
+        megoldastKitakar();
     }
 
     private void kiertekel() {
@@ -211,6 +233,7 @@ public class Vezerlo {
         }
         //Image kep, int szelesseg, int magassag, int kepX, int kepY
         int hanyadikkep = 1;
+        int feherekSzama = 0;
         
         for (int i = 0; i < tmpikonok.size(); i++) 
         {
@@ -229,6 +252,7 @@ public class Vezerlo {
                 ikon = new Ikon(kep, KIERTEKELES_KEPSZELESSEG, KIERTEKELES_KEPMAGASSAG, kepX, kepY);
                 kirajzolandoKepek.add(ikon);
                 hanyadikkep++;
+                feherekSzama++;
             }
             else if(megoldasLista.contains(tmpikonok.get(i)))
             {
@@ -237,15 +261,44 @@ public class Vezerlo {
                 kirajzolandoKepek.add(ikon);
                 hanyadikkep++;
             }
-            
-                
+                 
         }
-        balPanel.repaint();
+        frissit();
         jobbPanel.keszenAlloGombBeallit(false);
+        jobbPanel.visszaGombValtas(false);
+        if(fuggolegesKor==KOROK_SZAMA)
+        {
+            jatekVege();
+        }
+        if(feherekSzama==4)
+        {
+            jatekVege();
+            nyert = true;
+        }
     }
 
     public void talcaraRak() {
         frame.setState(Frame.ICONIFIED);
+    }
+
+    private void megoldastKitakar() {
+        Image kep = new ImageIcon(this.getClass().getResource(FAKAPU_ELERES)).getImage();
+//        Image kep, int szelesseg, int magassag, int kepX, int kepY, double dy, long ido
+        fakapu = new Kapu(kep, KAPU_SZELESSEG, KAPU_MAGASSAG, ELSO_IKON_KEPX-VIZSZINTES_KEPKOZ, 0, KAPU_LEPESKOZ, KAPU_LEPESIDO, this);
+        kep = new ImageIcon(this.getClass().getResource(RACS_ELERES)).getImage();
+        racs = new Kapu(kep, KAPU_SZELESSEG, KAPU_MAGASSAG, ELSO_IKON_KEPX-VIZSZINTES_KEPKOZ, 0, KAPU_LEPESKOZ, KAPU_LEPESIDO, this);   
+    }
+
+    public void frissit() {
+        balPanel.repaint();
+    }
+
+    public void fakaputindit() {
+        fakapu.start();
+    }
+
+    private void jatekVege() {
+        racs.start();
     }
     
     
