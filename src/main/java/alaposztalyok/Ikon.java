@@ -19,8 +19,6 @@ public class Ikon {
     private int kepX, kepY;
     private int sorSzam;
 
-
-
     
     public void rajzol(Graphics g)
     {
@@ -74,10 +72,5 @@ public class Ikon {
     public void setSorSzam(int sorSzam) {
         this.sorSzam = sorSzam;
     }
-    
-    
-    
-    
-    
-    
+
 }

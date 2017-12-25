@@ -17,11 +17,14 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import felulet.BalPanel;
+import felulet.JatekVegeFrame;
+import felulet.JatekVegePanel;
 import felulet.JobbPanel;
 import felulet.SugoFrame;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -32,6 +35,12 @@ public class Vezerlo {
     private BalPanel balPanel;
     private MainFrame frame;
     private SugoFrame sugoFrame;
+    private JatekVegeFrame jatekVegeFrame;
+    private JatekVegePanel jatekVegePanel;
+
+    public void setJatekVegePanel(JatekVegePanel jatekVegePanel) {
+        this.jatekVegePanel = jatekVegePanel;
+    }
     
     private final String ZENE_ELERES = "/zene/zene.mp3";
     private final String RACS_HANG_ELERES = "/zene/racs_zaras.mp3";
@@ -232,7 +241,7 @@ public class Vezerlo {
     private void kiertekel() {
         Ikon ikon;
         Image kep;
-        int kepX, kepY;
+        int kepX=ELSO_KIERTEKELES_IKON_KEPX, kepY;
        switch(fuggolegesKor)
         {
             case 1: kepY = ELSO_KIERTEKELES_IKON_KEPY; break;
@@ -246,36 +255,33 @@ public class Vezerlo {
             default: kepY = ELSO_KIERTEKELES_IKON_KEPY;
         }
         //Image kep, int szelesseg, int magassag, int kepX, int kepY
-        int hanyadikkep = 1;
         int feketekSzama = 0;
+        int feherekSzama = 0;
         
         for (int i = 0; i < tmpikonok.size(); i++) 
-        {
-            switch (hanyadikkep) 
-            {
-                case 1: kepX = ELSO_KIERTEKELES_IKON_KEPX; break;
-                case 2: kepX = ELSO_KIERTEKELES_IKON_KEPX + KIERTEKELES_KEPSZELESSEG; break;
-                case 3: kepX = ELSO_KIERTEKELES_IKON_KEPX + 2 * KIERTEKELES_KEPSZELESSEG; break;
-                case 4: kepX = ELSO_KIERTEKELES_IKON_KEPX + 3 * KIERTEKELES_KEPSZELESSEG; break;
-                default: kepX = ELSO_KIERTEKELES_IKON_KEPX;
-            }
-            
+        {        
             if(tmpikonok.get(i).equals(megoldasLista.get(i)))
             {
-                kep = kiertekeloKepek.get(0);
-                ikon = new Ikon(kep, KIERTEKELES_KEPSZELESSEG, KIERTEKELES_KEPMAGASSAG, kepX, kepY);
-                kirajzolandoKepek.add(ikon);
-                hanyadikkep++;
                 feketekSzama++;
             }
             else if(megoldasLista.contains(tmpikonok.get(i)))
             {
-                kep = kiertekeloKepek.get(1);
-                ikon = new Ikon(kep, KIERTEKELES_KEPSZELESSEG, KIERTEKELES_KEPMAGASSAG, kepX, kepY);
-                kirajzolandoKepek.add(ikon);
-                hanyadikkep++;
-            }
-                 
+                feherekSzama++;
+            }          
+        }
+        int utolsoFeketeKepX = ELSO_KIERTEKELES_IKON_KEPX;
+        for (int i = 0; i < feketekSzama; i++) {
+            kep = kiertekeloKepek.get(0);
+            kepX = ELSO_KIERTEKELES_IKON_KEPX + i*KIERTEKELES_KEPSZELESSEG;
+            ikon = new Ikon(kep, IKON_SZELESSEG, IKON_MAGASSAG, kepX, kepY);
+            kirajzolandoKepek.add(ikon);
+            utolsoFeketeKepX = kepX+KIERTEKELES_KEPSZELESSEG;
+        }
+        for (int i = 0; i < feherekSzama; i++) {
+            kep = kiertekeloKepek.get(1);
+            kepX = utolsoFeketeKepX + i*KIERTEKELES_KEPSZELESSEG;
+            ikon = new Ikon(kep, IKON_SZELESSEG, IKON_MAGASSAG, kepX, kepY);
+            kirajzolandoKepek.add(ikon);
         }
         frissit();
         jobbPanel.keszenAlloGombBeallit(false);
@@ -315,13 +321,10 @@ public class Vezerlo {
     }
 
     public void fakaputindit() {
+        if(!fakapu.isAlive())
         fakapu.start();
     }
 
-    private void jatekVege() {
-        jobbPanel.osszesIkonGombotAktival(false);
-        racs.setLezart(true);
-    }
 
     private void zeneInditas() {
         zene.setZeneFajlEleres(ZENE_ELERES);
@@ -350,4 +353,31 @@ public class Vezerlo {
     }
     
     
+    private void jatekVege() {
+        jobbPanel.osszesIkonGombotAktival(false);
+        racs.setLezart(true);
+        if(jatekVegeFrame == null)
+        {
+            jatekVegeFrame = new JatekVegeFrame();
+        }
+        jatekVegePanel = jatekVegeFrame.getJatekVegePanel2();
+        jatekVegePanel.setNyert(nyert);
+        jatekVegePanel.setVezerlo(this);
+        jatekVegePanel.setLepesSzam(fuggolegesKor);
+        jatekVegePanel.beallitas();
+        jatekVegeFrame.setVisible(true);
+
+    }
+
+    public void jatekVegeFrametElrejt() {
+        jatekVegeFrame.setVisible(false);
+    }
+
+    public void dialogusAblak() {
+        int valasz = JOptionPane.showConfirmDialog(null, "Biztosan ki szeretnél lépni a játékból?");
+        if(valasz == 0)
+        {
+            System.exit(0);
+        }
+    }
 }

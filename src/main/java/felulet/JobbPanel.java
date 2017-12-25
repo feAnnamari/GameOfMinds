@@ -35,7 +35,6 @@ public class JobbPanel extends javax.swing.JPanel {
         super.paintComponent(g);
         int kezdox, kezdoy, szelesseg, magassag;
 	g.drawImage(hatter, 0, 0, this.getWidth(), this.getHeight(), null); 
-        
     }
 
     /**
@@ -324,7 +323,7 @@ public class JobbPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnTalcaraActionPerformed
 
     private void btnKilepesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKilepesActionPerformed
-        System.exit(0);
+        vezerlo.dialogusAblak();
     }//GEN-LAST:event_btnKilepesActionPerformed
 
     private void btnSugoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSugoActionPerformed
