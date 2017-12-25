@@ -75,7 +75,6 @@ public class SugoFrame extends javax.swing.JFrame {
     private void beallitas() {
         this.setLocationRelativeTo(null);
         this.setSize(SZELESSEG, MAGASSAG);
-        setAlwaysOnTop(true);
     }
 
     public SugoPanel getSugoPanel2() {

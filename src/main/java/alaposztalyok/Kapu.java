@@ -24,6 +24,7 @@ public class Kapu extends Thread{
     private Vezerlo vezerlo;
     private volatile boolean lezart;
     private volatile boolean vege;
+    private boolean fakapu;
     
     public void rajzol(Graphics g)
     {
@@ -79,13 +80,25 @@ public class Kapu extends Thread{
             vezerlo.frissit();
             Thread.sleep(ido);
             vege = true;
+
         }
-        vezerlo.fakaputindit();
+        if(fakapu)
+        {
+            vezerlo.jatekVegeFrametMutat();
+        }
+        if(!fakapu)
+        {
+            vezerlo.fakaputindit();
+        }
+        
     }
 
     public void setVege(boolean vege) {
         this.vege = vege;
     }
-    
-    
+
+    public void setFakapu(boolean fakapu) {
+        this.fakapu = fakapu;
+    }
+
 }

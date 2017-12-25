@@ -20,6 +20,15 @@ public class Zene extends Thread{
     private String zenefajlEleres;
     private InputStream stream; 
     private Player player;
+    private boolean aktiv;
+
+    public void setAktiv(boolean aktiv) {
+        this.aktiv = aktiv;
+    }
+
+    public boolean isAktiv() {
+        return aktiv;
+    }
     
     public void setZeneFajlEleres(String zenefajlEleres) {
         try {
@@ -34,7 +43,7 @@ public class Zene extends Thread{
     @Override
     public void run(){
         try {
-            player.play();
+             player.play();
         } catch (JavaLayerException ex) {
             Logger.getLogger(Zene.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -47,4 +56,6 @@ public class Zene extends Thread{
     public String getZenefajlEleres() {
         return zenefajlEleres;
     }    
+    
+    
 }

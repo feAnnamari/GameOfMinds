@@ -9,6 +9,8 @@ import java.awt.Color;
 import vezerlo.Vezerlo;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ResourceBundle;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -19,8 +21,11 @@ import javax.swing.JOptionPane;
 public class JobbPanel extends javax.swing.JPanel {
 
     private Image hatter = new ImageIcon(this.getClass().getResource("/kepek/hatter.jpg")).getImage(); 
-    
+    private ResourceBundle bundle;
     private Vezerlo vezerlo;
+    private Icon hangbe = new ImageIcon(this.getClass().getResource("/kepek/hangbe.png")); 
+    private Icon hangki = new ImageIcon(this.getClass().getResource("/kepek/hangki.png"));
+    
 
     public void setVezerlo(Vezerlo vezerlo) {
         this.vezerlo = vezerlo;
@@ -28,6 +33,7 @@ public class JobbPanel extends javax.swing.JPanel {
             
     public JobbPanel() {
         initComponents();
+        btnHang.setIcon(hangki);
     }
 
     @Override
@@ -55,12 +61,15 @@ public class JobbPanel extends javax.swing.JPanel {
         btnIcon7 = new javax.swing.JButton();
         btnIcon8 = new javax.swing.JButton();
         btnIcon9 = new javax.swing.JButton();
-        btnNewGame = new javax.swing.JButton();
-        btnReady = new javax.swing.JButton();
+        btnUjJatek = new javax.swing.JButton();
+        btnKesz = new javax.swing.JButton();
         btnKilepes = new javax.swing.JButton();
         btnTalcara = new javax.swing.JButton();
         btnSugo = new javax.swing.JButton();
         btnVissza = new javax.swing.JButton();
+        btnHun = new javax.swing.JButton();
+        btnEng = new javax.swing.JButton();
+        btnHang = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 51, 51));
 
@@ -138,23 +147,23 @@ public class JobbPanel extends javax.swing.JPanel {
             }
         });
 
-        btnNewGame.setBackground(new java.awt.Color(51, 51, 51));
-        btnNewGame.setFont(new java.awt.Font("Vivaldi", 0, 36)); // NOI18N
-        btnNewGame.setForeground(new java.awt.Color(0, 0, 0));
-        btnNewGame.setText("Új játék");
-        btnNewGame.addActionListener(new java.awt.event.ActionListener() {
+        btnUjJatek.setBackground(new java.awt.Color(51, 51, 51));
+        btnUjJatek.setFont(new java.awt.Font("Vivaldi", 0, 36)); // NOI18N
+        btnUjJatek.setForeground(new java.awt.Color(0, 0, 0));
+        btnUjJatek.setText("Új játék");
+        btnUjJatek.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNewGameActionPerformed(evt);
+                btnUjJatekActionPerformed(evt);
             }
         });
 
-        btnReady.setBackground(new java.awt.Color(51, 51, 51));
-        btnReady.setFont(new java.awt.Font("Vivaldi", 0, 70)); // NOI18N
-        btnReady.setText("Kész");
-        btnReady.setEnabled(false);
-        btnReady.addActionListener(new java.awt.event.ActionListener() {
+        btnKesz.setBackground(new java.awt.Color(51, 51, 51));
+        btnKesz.setFont(new java.awt.Font("Vivaldi", 0, 70)); // NOI18N
+        btnKesz.setText("Kész");
+        btnKesz.setEnabled(false);
+        btnKesz.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReadyActionPerformed(evt);
+                btnKeszActionPerformed(evt);
             }
         });
 
@@ -175,6 +184,7 @@ public class JobbPanel extends javax.swing.JPanel {
         });
 
         btnSugo.setBackground(new java.awt.Color(51, 51, 51));
+        btnSugo.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnSugo.setText("?");
         btnSugo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,6 +202,30 @@ public class JobbPanel extends javax.swing.JPanel {
             }
         });
 
+        btnHun.setBackground(new java.awt.Color(51, 51, 51));
+        btnHun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kepek/hun_flag.png"))); // NOI18N
+        btnHun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHunActionPerformed(evt);
+            }
+        });
+
+        btnEng.setBackground(new java.awt.Color(51, 51, 51));
+        btnEng.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kepek/eng_flag.png"))); // NOI18N
+        btnEng.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEngActionPerformed(evt);
+            }
+        });
+
+        btnHang.setBackground(new java.awt.Color(51, 51, 51));
+        btnHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kepek/hangki.png"))); // NOI18N
+        btnHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHangActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -199,14 +233,22 @@ public class JobbPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnSugo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnTalcara)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(btnHun, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnKilepes))
+                        .addComponent(btnEng, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnSugo, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnHang, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnTalcara)
+                                .addGap(1, 1, 1)
+                                .addComponent(btnKilepes))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -226,20 +268,23 @@ public class JobbPanel extends javax.swing.JPanel {
                                     .addComponent(btnIcon3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnIcon6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnIcon9, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(btnReady, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnVissza, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnNewGame, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 1, Short.MAX_VALUE)))
+                            .addComponent(btnKesz, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnVissza, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(11, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnUjJatek, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnKilepes)
-                    .addComponent(btnTalcara)
-                    .addComponent(btnSugo))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(btnTalcara, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnHang, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSugo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnKilepes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -260,12 +305,16 @@ public class JobbPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnIcon9, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnReady, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnKesz, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnVissza, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addComponent(btnNewGame, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnEng, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHun, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnUjJatek, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -309,14 +358,14 @@ public class JobbPanel extends javax.swing.JPanel {
         vezerlo.visszaVon();
     }//GEN-LAST:event_btnVisszaActionPerformed
 
-    private void btnReadyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadyActionPerformed
+    private void btnKeszActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKeszActionPerformed
         vezerlo.keszenallas();
-    }//GEN-LAST:event_btnReadyActionPerformed
+    }//GEN-LAST:event_btnKeszActionPerformed
 
-    private void btnNewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewGameActionPerformed
+    private void btnUjJatekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUjJatekActionPerformed
         vezerlo.alaphelyzetbeallit();
         vezerlo.megoldastGyart();
-    }//GEN-LAST:event_btnNewGameActionPerformed
+    }//GEN-LAST:event_btnUjJatekActionPerformed
 
     private void btnTalcaraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTalcaraActionPerformed
         vezerlo.talcaraRak();
@@ -330,8 +379,31 @@ public class JobbPanel extends javax.swing.JPanel {
         vezerlo.sugotMegnyit();
     }//GEN-LAST:event_btnSugoActionPerformed
 
+    private void btnHunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHunActionPerformed
+        vezerlo.bundleBeallitas("hu");
+    }//GEN-LAST:event_btnHunActionPerformed
+
+    private void btnEngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEngActionPerformed
+        vezerlo.bundleBeallitas("en");
+    }//GEN-LAST:event_btnEngActionPerformed
+
+    private void btnHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHangActionPerformed
+        if(btnHang.getIcon().equals(hangki)){
+            btnHang.setIcon(hangbe);
+            vezerlo.zeneLeallitas();
+            
+        }
+        else{
+            vezerlo.zeneInditas();
+            btnHang.setIcon(hangki);
+        }
+    }//GEN-LAST:event_btnHangActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEng;
+    private javax.swing.JButton btnHang;
+    private javax.swing.JButton btnHun;
     private javax.swing.JButton btnIcon1;
     private javax.swing.JButton btnIcon2;
     private javax.swing.JButton btnIcon3;
@@ -341,19 +413,19 @@ public class JobbPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnIcon7;
     private javax.swing.JButton btnIcon8;
     private javax.swing.JButton btnIcon9;
+    private javax.swing.JButton btnKesz;
     private javax.swing.JButton btnKilepes;
-    private javax.swing.JButton btnNewGame;
-    private javax.swing.JButton btnReady;
     private javax.swing.JButton btnSugo;
     private javax.swing.JButton btnTalcara;
+    private javax.swing.JButton btnUjJatek;
     private javax.swing.JButton btnVissza;
     // End of variables declaration//GEN-END:variables
 
     public void keszenAlloGombBeallit(boolean aktivitas) {
-        btnReady.setEnabled(aktivitas);
+        btnKesz.setEnabled(aktivitas);
         if(aktivitas)
         {
-            btnReady.requestFocus();
+            btnKesz.requestFocus();
         }
     }
 
@@ -387,5 +459,11 @@ public class JobbPanel extends javax.swing.JPanel {
             case 8: btnIcon8.setEnabled(b); break;
             case 9: btnIcon9.setEnabled(b); break;
         }
+    }
+
+    public void szovegBeallitas(ResourceBundle bundle) {
+        btnKesz.setText(bundle.getString("btnKesz.text"));
+        btnVissza.setText(bundle.getString("btnVissza.text"));
+        btnUjJatek.setText(bundle.getString("btnUjJatek.text"));
     }
 }

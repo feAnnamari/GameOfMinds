@@ -7,6 +7,7 @@ package felulet;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ResourceBundle;
 import javax.swing.ImageIcon;
 import vezerlo.Vezerlo;
 
@@ -82,4 +83,9 @@ public class SugoPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOK;
     // End of variables declaration//GEN-END:variables
+
+    public void szovegBeallitas(ResourceBundle bundle) {
+        hatter = new ImageIcon(this.getClass().getResource(bundle.getString("sugoHatterEleres"))).getImage();
+        repaint();
+    }
 }

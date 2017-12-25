@@ -101,7 +101,6 @@ public class JatekVegeFrame extends javax.swing.JFrame {
     private void beallitas() {
         this.setSize(SZELESSEG, MAGASSAG); 
         this.setLocationRelativeTo(this);
-        setAlwaysOnTop(true);
         
     }
 

@@ -7,6 +7,7 @@ package felulet;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ResourceBundle;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import vezerlo.Vezerlo;
@@ -18,8 +19,10 @@ import vezerlo.Vezerlo;
 public class JatekVegePanel extends javax.swing.JPanel {
 
     private boolean nyert;
-    private final String NYERO_HATTER_ELERES = "/kepek/nyerohatter.png";
+    private final String NYERO_HATTER_ELERES = "/kepek/nyeres.png";
     private final String VESZTETT_HATTER_ELERES = "/kepek/vesztetthatter.png";
+    private Image nyeresHatter;
+    private Image vesztesHatter;
     private final Image tuzijatekKep = new ImageIcon(this.getClass().getResource("/kepek/tuzijatek.gif")).getImage();
     private Image hatter; 
     private int lepesSzam;
@@ -125,15 +128,25 @@ public class JatekVegePanel extends javax.swing.JPanel {
     public void beallitas() {
         if(nyert)
         {
-            hatter = new ImageIcon(this.getClass().getResource(NYERO_HATTER_ELERES)).getImage();
+            hatter = nyeresHatter;
             lblLepesSzam.setText(Integer.toString(lepesSzam));
             lblLepesSzam.setVisible(true);
         }
         if(!nyert)
         {
-            hatter = new ImageIcon(this.getClass().getResource(VESZTETT_HATTER_ELERES)).getImage();
+            hatter = vesztesHatter;
             lblLepesSzam.setVisible(false);
         }     
         repaint();
     }
+
+    public void szovegBeallitas(ResourceBundle bundle) 
+    {
+        nyeresHatter = new ImageIcon(this.getClass().getResource(bundle.getString("nyeresHatterEleres"))).getImage();
+        vesztesHatter = new ImageIcon(this.getClass().getResource(bundle.getString("vesztesHatterEleres"))).getImage();
+        btnUjJatek.setText(bundle.getString("btnUjJatek.text"));
+        btnKilepes.setText(bundle.getString("btnKilepes.text"));
+        beallitas();
+    }
+
 }

@@ -23,7 +23,10 @@ import felulet.JobbPanel;
 import felulet.SugoFrame;
 import java.awt.Frame;
 import java.awt.Graphics;
+import java.util.Locale;
 import java.util.Random;
+import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 import javax.swing.JOptionPane;
 
 /**
@@ -42,9 +45,15 @@ public class Vezerlo {
         this.jatekVegePanel = jatekVegePanel;
     }
     
+    private ResourceBundle bundle;
+    private final String BUNDLE_ELERES_HU = "lokalitas/Bundle_hu_HU";
+    private final String BUNDLE_ELERES_EN = "lokalitas/Bundle_en_GB";
+    
+    
     private final String ZENE_ELERES = "/zene/zene.mp3";
     private final String RACS_HANG_ELERES = "/zene/racs_zaras.mp3";
     private Zene zene;
+    private Zene racsHang;
     
     private final String IKON_ELERES = "/kepek/";
     private final int IKON_SZAM = 9;
@@ -103,7 +112,35 @@ public class Vezerlo {
             racs.rajzol(g);
         }
     }
+    void beallitas() {
+        kepFeltoltes();
+        alaphelyzetbeallit();
+        zeneInditas();
+        jobbPanel.osszesIkonGombotAktival(false); 
+        jatekVegeFrame = new JatekVegeFrame();
+        jatekVegePanel = jatekVegeFrame.getJatekVegePanel2();
+        sugoFrame = new SugoFrame();
+        sugoFrame.getSugoPanel2().setVezerlo(this);
+        bundleBeallitas("hu");  
+    }
+    
+        public void alaphelyzetbeallit() {
+        kirajzolandoKepek.clear();
+        tmpikonok.clear();
+        megoldasLista.clear(); 
+        fuggolegesKor = 1;
+        vizszintesKor = 1;
+        frissit();
+        jobbPanel.keszenAlloGombBeallit(false);
+        balPanel.beallitas();
+        jobbPanel.osszesIkonGombotAktival(true);
+        nyert = false;
+        if(jatekVegeFrame!=null)
+            jatekVegeFrame.setVisible(false);
+    }
 
+
+    
     public void ikontBerak(int iconIndex) {
         Image valasztottKep = kepek.get(iconIndex-1);
 //        Image kep, int szelesseg, int magassag, int kepX, int kepY
@@ -194,27 +231,6 @@ public class Vezerlo {
         }
     }
 
-    public void alaphelyzetbeallit() {
-        kirajzolandoKepek.clear();
-        tmpikonok.clear();
-        megoldasLista.clear();
-        
-        fuggolegesKor = 1;
-        vizszintesKor = 1;
-        frissit();
-        jobbPanel.keszenAlloGombBeallit(false);
-        balPanel.beallitas();
-        jobbPanel.osszesIkonGombotAktival(true);
-    }
-
-    void beallitas() {
-        kepFeltoltes();
-        alaphelyzetbeallit();
-        zene = new Zene();
-        zeneInditas();
-        jobbPanel.osszesIkonGombotAktival(false);
-    }
-
     public void megoldastGyart() {
         Ikon ikon;
         Image kep = null;
@@ -287,13 +303,17 @@ public class Vezerlo {
         jobbPanel.keszenAlloGombBeallit(false);
         jobbPanel.visszaGombValtas(false);
         if(fuggolegesKor==KOROK_SZAMA)
-        {
+        {      
+            if(feketekSzama==4)
+            {
+                nyert = true;
+            }
             jatekVege();
         }
         if(feketekSzama==4)
         {
-            jatekVege();
             nyert = true;
+            jatekVege();        
         }
     }
 
@@ -321,30 +341,30 @@ public class Vezerlo {
     }
 
     public void fakaputindit() {
-        if(!fakapu.isAlive())
         fakapu.start();
+        fakapu.setFakapu(true);
     }
 
 
-    private void zeneInditas() {
+    public void zeneInditas() {
+        zene = new Zene();
         zene.setZeneFajlEleres(ZENE_ELERES);
+        zene.setAktiv(true);
         zene.start();
     }
 
     private void racsotLevisz() {
-        Zene racsHang = new Zene();
+        if(racsHang != null)
+        racsHang.setAktiv(false);
+        racsHang = new Zene();
         racsHang.setZeneFajlEleres(RACS_HANG_ELERES);
+        racsHang.setAktiv(true);
         racsHang.start();
         racs.start();
     }
 
     public void sugotMegnyit() {
-        if(sugoFrame == null)
-        {
-            sugoFrame = new SugoFrame();
-            sugoFrame.getSugoPanel2().setVezerlo(this);
-        }
-            sugoFrame.setVisible(true);
+        sugoFrame.setVisible(true);
         
     }
 
@@ -354,19 +374,14 @@ public class Vezerlo {
     
     
     private void jatekVege() {
+ 
         jobbPanel.osszesIkonGombotAktival(false);
         racs.setLezart(true);
-        if(jatekVegeFrame == null)
-        {
-            jatekVegeFrame = new JatekVegeFrame();
-        }
-        jatekVegePanel = jatekVegeFrame.getJatekVegePanel2();
+        
         jatekVegePanel.setNyert(nyert);
         jatekVegePanel.setVezerlo(this);
         jatekVegePanel.setLepesSzam(fuggolegesKor);
         jatekVegePanel.beallitas();
-        jatekVegeFrame.setVisible(true);
-
     }
 
     public void jatekVegeFrametElrejt() {
@@ -374,10 +389,35 @@ public class Vezerlo {
     }
 
     public void dialogusAblak() {
-        int valasz = JOptionPane.showConfirmDialog(null, "Biztosan ki szeretnél lépni a játékból?");
+        JOptionPane dialogusAblak = new JOptionPane();
+        dialogusAblak.setLocale(Locale.getDefault());
+        int valasz = dialogusAblak.showConfirmDialog(null, "Biztosan ki szeretnél lépni a játékból?");
         if(valasz == 0)
         {
             System.exit(0);
         }
+    }
+
+    public void bundleBeallitas(String nyelv) {
+        if(nyelv=="hu")
+        {
+            bundle = ResourceBundle.getBundle(BUNDLE_ELERES_HU);
+        }
+        if(nyelv=="en")
+        {
+            bundle = ResourceBundle.getBundle(BUNDLE_ELERES_EN);
+        }
+        jobbPanel.szovegBeallitas(bundle);
+        sugoFrame.getSugoPanel2().szovegBeallitas(bundle);
+        jatekVegePanel.szovegBeallitas(bundle);
+        
+    }
+
+    public void jatekVegeFrametMutat() {
+        jatekVegeFrame.setVisible(true);
+    }
+
+    public void zeneLeallitas() {
+        zene.leall();
     }
 }
