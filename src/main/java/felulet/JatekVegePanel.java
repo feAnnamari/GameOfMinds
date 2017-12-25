@@ -101,11 +101,11 @@ public class JatekVegePanel extends javax.swing.JPanel {
         add(btnKilepes);
         btnKilepes.setBounds(210, 290, 210, 60);
 
-        lblLepesSzam.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblLepesSzam.setFont(new java.awt.Font("Arial", 0, 22)); // NOI18N
         lblLepesSzam.setForeground(new java.awt.Color(255, 255, 255));
         lblLepesSzam.setText("1");
         add(lblLepesSzam);
-        lblLepesSzam.setBounds(190, 158, 20, 22);
+        lblLepesSzam.setBounds(170, 154, 50, 40);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUjJatekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUjJatekActionPerformed

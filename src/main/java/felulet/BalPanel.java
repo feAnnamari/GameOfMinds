@@ -8,6 +8,7 @@ package felulet;
 import java.awt.Graphics;
 import vezerlo.Vezerlo;
 import java.awt.Image;
+import java.util.ResourceBundle;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
@@ -19,7 +20,21 @@ public class BalPanel extends javax.swing.JPanel {
 
     private Vezerlo vezerlo;
     private Image hatter = new ImageIcon(this.getClass().getResource("/kepek/balhatter.png")).getImage(); 
+    private int nyertjatekok;
+    private int osszjatek;
+    private ResourceBundle bundle;
 
+    public void setBundle(ResourceBundle bundle) {
+        this.bundle = bundle;
+    }
+    
+    public void setNyertjatekok(int nyertjatekok) {
+        this.nyertjatekok = nyertjatekok;
+    }
+
+    public void setOsszjatek(int osszjatek) {
+        this.osszjatek = osszjatek;
+    }
     public void setVezerlo(Vezerlo vezerlo) {
         this.vezerlo = vezerlo;
     }
@@ -57,95 +72,83 @@ public class BalPanel extends javax.swing.JPanel {
         lblHatodik = new javax.swing.JLabel();
         lblHetedik = new javax.swing.JLabel();
         lblNyolcadik = new javax.swing.JLabel();
+        lblNyertJatekok = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
+        setPreferredSize(new java.awt.Dimension(678, 700));
+        setLayout(null);
 
         lblMasodik.setBackground(new java.awt.Color(153, 153, 153));
         lblMasodik.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
         lblMasodik.setForeground(new java.awt.Color(204, 204, 204));
         lblMasodik.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMasodik.setText("2.");
+        add(lblMasodik);
+        lblMasodik.setBounds(199, 554, 51, 60);
 
         lblElso.setBackground(new java.awt.Color(153, 153, 153));
         lblElso.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
         lblElso.setForeground(new java.awt.Color(204, 204, 204));
         lblElso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblElso.setText("1.");
+        add(lblElso);
+        lblElso.setBounds(199, 627, 51, 60);
 
         lblHarmadik.setBackground(new java.awt.Color(153, 153, 153));
         lblHarmadik.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
         lblHarmadik.setForeground(new java.awt.Color(204, 204, 204));
         lblHarmadik.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHarmadik.setText("3.");
+        add(lblHarmadik);
+        lblHarmadik.setBounds(199, 481, 51, 60);
 
         lblOtodik.setBackground(new java.awt.Color(153, 153, 153));
         lblOtodik.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
         lblOtodik.setForeground(new java.awt.Color(204, 204, 204));
         lblOtodik.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblOtodik.setText("5.");
+        add(lblOtodik);
+        lblOtodik.setBounds(199, 335, 51, 60);
 
         lblNegyedik.setBackground(new java.awt.Color(153, 153, 153));
         lblNegyedik.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
         lblNegyedik.setForeground(new java.awt.Color(204, 204, 204));
         lblNegyedik.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNegyedik.setText("4.");
+        add(lblNegyedik);
+        lblNegyedik.setBounds(199, 408, 51, 60);
 
         lblHatodik.setBackground(new java.awt.Color(153, 153, 153));
         lblHatodik.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
         lblHatodik.setForeground(new java.awt.Color(204, 204, 204));
         lblHatodik.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHatodik.setText("6.");
+        add(lblHatodik);
+        lblHatodik.setBounds(199, 262, 51, 60);
 
         lblHetedik.setBackground(new java.awt.Color(153, 153, 153));
         lblHetedik.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
         lblHetedik.setForeground(new java.awt.Color(204, 204, 204));
         lblHetedik.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHetedik.setText("7.");
+        add(lblHetedik);
+        lblHetedik.setBounds(199, 189, 51, 60);
 
         lblNyolcadik.setBackground(new java.awt.Color(153, 153, 153));
         lblNyolcadik.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
         lblNyolcadik.setForeground(new java.awt.Color(204, 204, 204));
         lblNyolcadik.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNyolcadik.setText("8.");
+        add(lblNyolcadik);
+        lblNyolcadik.setBounds(199, 116, 51, 60);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(199, 199, 199)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNyolcadik, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblHetedik, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblHatodik, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblOtodik, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblHarmadik, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMasodik, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblElso, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNegyedik, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(428, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(116, Short.MAX_VALUE)
-                .addComponent(lblNyolcadik, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addComponent(lblHetedik, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addComponent(lblHatodik, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addComponent(lblOtodik, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addComponent(lblNegyedik, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addComponent(lblHarmadik, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addComponent(lblMasodik, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addComponent(lblElso, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13))
-        );
+        lblNyertJatekok.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
+        lblNyertJatekok.setForeground(new java.awt.Color(0, 0, 0));
+        lblNyertJatekok.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNyertJatekok.setText("JatekNyeresekSzama");
+        add(lblNyertJatekok);
+        lblNyertJatekok.setBounds(266, 60, 200, 70);
+        lblNyertJatekok.getAccessibleContext().setAccessibleName("lblNyertJatekok");
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -156,6 +159,7 @@ public class BalPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblHetedik;
     private javax.swing.JLabel lblMasodik;
     private javax.swing.JLabel lblNegyedik;
+    private javax.swing.JLabel lblNyertJatekok;
     private javax.swing.JLabel lblNyolcadik;
     private javax.swing.JLabel lblOtodik;
     // End of variables declaration//GEN-END:variables
@@ -182,6 +186,10 @@ public class BalPanel extends javax.swing.JPanel {
         lblHatodik.setVisible(false);
         lblHetedik.setVisible(false);
         lblNyolcadik.setVisible(false);
+    }
+
+    public void lblFrissites() {
+        lblNyertJatekok.setText(bundle.getString("nyertJatekok")+": \n" + nyertjatekok+"/"+osszjatek);
     }
 
 

@@ -28,6 +28,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -78,6 +79,8 @@ public class Vezerlo {
     private int vizszintesKor = 1;
     private int fuggolegesKor = 1;
     private boolean nyert;
+    private int nyeresekSzama;
+    private int jatekokSzama;
     
     private Kapu fakapu;
     private Kapu racs;
@@ -307,12 +310,14 @@ public class Vezerlo {
             if(feketekSzama==4)
             {
                 nyert = true;
+                nyeresekSzama++;
             }
             jatekVege();
         }
         if(feketekSzama==4)
         {
             nyert = true;
+            nyeresekSzama++;
             jatekVege();        
         }
     }
@@ -374,14 +379,16 @@ public class Vezerlo {
     
     
     private void jatekVege() {
- 
+        jatekokSzama++;
         jobbPanel.osszesIkonGombotAktival(false);
         racs.setLezart(true);
-        
         jatekVegePanel.setNyert(nyert);
         jatekVegePanel.setVezerlo(this);
         jatekVegePanel.setLepesSzam(fuggolegesKor);
         jatekVegePanel.beallitas();
+        balPanel.setNyertjatekok(nyeresekSzama);
+        balPanel.setOsszjatek(jatekokSzama);
+        balPanel.lblFrissites();
     }
 
     public void jatekVegeFrametElrejt() {
@@ -389,9 +396,12 @@ public class Vezerlo {
     }
 
     public void dialogusAblak() {
+        int dialogButton = JOptionPane.YES_NO_OPTION;
         JOptionPane dialogusAblak = new JOptionPane();
-        dialogusAblak.setLocale(Locale.getDefault());
-        int valasz = dialogusAblak.showConfirmDialog(null, "Biztosan ki szeretnél lépni a játékból?");
+        UIManager.put("OptionPane.yesButtonText", bundle.getString("dialogusIgen"));
+        UIManager.put("OptionPane.noButtonText", bundle.getString("dialogusNem"));
+        UIManager.put("OptionPane.", bundle.getString("dialogusNem"));
+        int valasz = dialogusAblak.showConfirmDialog(null, bundle.getString("dialogusSzoveg"), bundle.getString("dialogusCim"), 0);
         if(valasz == 0)
         {
             System.exit(0);
@@ -410,6 +420,8 @@ public class Vezerlo {
         jobbPanel.szovegBeallitas(bundle);
         sugoFrame.getSugoPanel2().szovegBeallitas(bundle);
         jatekVegePanel.szovegBeallitas(bundle);
+        balPanel.setBundle(bundle);
+        balPanel.lblFrissites();
         
     }
 
