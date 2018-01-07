@@ -76,8 +76,8 @@ public class Vezerlo {
     private final int KAPU_LEPESIDO = 20;
     private int KOROK_SZAMA = 8;
     
-    private int vizszintesKor = 1;
-    private int fuggolegesKor = 1;
+    private int vizszintesKor;
+    private int fuggolegesKor;
     private boolean nyert;
     private int nyeresekSzama;
     private int jatekokSzama;
@@ -97,6 +97,7 @@ public class Vezerlo {
         this.jobbPanel = jobbPanel;
         this.balPanel = balPanel;
         this.frame = frame;
+        jatekokSzama=-1;
     }
 
     public void rajzol(Graphics g) {
@@ -129,6 +130,7 @@ public class Vezerlo {
     
         public void alaphelyzetbeallit() {
         kirajzolandoKepek.clear();
+        jobbPanel.ujJatekGombotBeallit(true);
         tmpikonok.clear();
         megoldasLista.clear(); 
         fuggolegesKor = 1;
@@ -346,8 +348,8 @@ public class Vezerlo {
     }
 
     public void fakaputindit() {
-        fakapu.start();
         fakapu.setFakapu(true);
+        fakapu.start();
     }
 
 
@@ -379,16 +381,14 @@ public class Vezerlo {
     
     
     private void jatekVege() {
-        jatekokSzama++;
+        jobbPanel.ujJatekGombotBeallit(false);
         jobbPanel.osszesIkonGombotAktival(false);
         racs.setLezart(true);
         jatekVegePanel.setNyert(nyert);
         jatekVegePanel.setVezerlo(this);
         jatekVegePanel.setLepesSzam(fuggolegesKor);
         jatekVegePanel.beallitas();
-        balPanel.setNyertjatekok(nyeresekSzama);
-        balPanel.setOsszjatek(jatekokSzama);
-        balPanel.lblFrissites();
+        balpaneltBeallit();
     }
 
     public void jatekVegeFrametElrejt() {
@@ -431,5 +431,13 @@ public class Vezerlo {
 
     public void zeneLeallitas() {
         zene.leall();
+    }
+    
+    public void balpaneltBeallit()
+    {
+        jatekokSzama++;
+        balPanel.setNyertjatekok(nyeresekSzama);
+        balPanel.setOsszjatek(jatekokSzama);
+        balPanel.lblFrissites();
     }
 }
