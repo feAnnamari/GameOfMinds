@@ -9,6 +9,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ResourceBundle;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import vezerlo.Vezerlo;
 
@@ -148,5 +149,55 @@ public class JatekVegePanel extends javax.swing.JPanel {
         btnKilepes.setText(bundle.getString("btnKilepes.text"));
         beallitas();
     }
+
+    public Image getNyeresHatter() {
+        return nyeresHatter;
+    }
+
+    public Image getVesztesHatter() {
+        return vesztesHatter;
+    }
+
+    public Image getTuzijatekKep() {
+        return tuzijatekKep;
+    }
+
+    public Image getHatter() {
+        return hatter;
+    }
+
+    public int getLepesSzam() {
+        return lepesSzam;
+    }
+
+    public Vezerlo getVezerlo() {
+        return vezerlo;
+    }
+
+    public JLabel getLblLepesSzam() {
+        return lblLepesSzam;
+    }
+
+    public void setNyeresHatter(Image nyeresHatter) {
+        this.nyeresHatter = nyeresHatter;
+    }
+
+    public void setVesztesHatter(Image vesztesHatter) {
+        this.vesztesHatter = vesztesHatter;
+    }
+
+    public void setHatter(Image hatter) {
+        this.hatter = hatter;
+    }
+
+    public void setLblLepesSzam(JLabel lblLepesSzam) {
+        this.lblLepesSzam = lblLepesSzam;
+    }
+    
+    
+    
+    
+
+    
 
 }

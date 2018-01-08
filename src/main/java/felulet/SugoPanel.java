@@ -76,7 +76,7 @@ public class SugoPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
-        vezerlo.sugotElrejt();
+        vezerlo.sugotLathatosagotBeallit(false);
     }//GEN-LAST:event_btnOKActionPerformed
 
 

@@ -53,6 +53,9 @@ public class Vezerlo {
     
     private final String ZENE_ELERES = "/zene/zene.mp3";
     private final String RACS_HANG_ELERES = "/zene/racs_zaras.mp3";
+    private final String RACS_ELERES = "/kepek/racs.png";
+    private final String FAKAPU_ELERES = "/kepek/fakapu.png";
+    
     private Zene zene;
     private Zene racsHang;
     
@@ -70,11 +73,10 @@ public class Vezerlo {
     private final int KIERTEKELES_KEPSZELESSEG = 40;
     private final int KAPU_SZELESSEG = 234;
     private final int KAPU_MAGASSAG = 73;
-    private final String RACS_ELERES = "/kepek/racs.png";
-    private final String FAKAPU_ELERES = "/kepek/fakapu.png";
+
     private final double KAPU_LEPESKOZ = 1.1;
     private final int KAPU_LEPESIDO = 20;
-    private int KOROK_SZAMA = 8;
+    private final int KOROK_SZAMA = 8;
     
     private int vizszintesKor;
     private int fuggolegesKor;
@@ -100,6 +102,10 @@ public class Vezerlo {
         jatekokSzama=-1;
     }
 
+    /**
+     * Mindent kirajzol a bal panelre.
+     * @param g 
+     */
     public void rajzol(Graphics g) {
         for (Ikon ikon : kirajzolandoKepek) {
             ikon.rajzol(g);
@@ -116,6 +122,9 @@ public class Vezerlo {
             racs.rajzol(g);
         }
     }
+    /**
+     * A program indításakor az alapbeállításokat elvégzi.
+     */
     void beallitas() {
         kepFeltoltes();
         alaphelyzetbeallit();
@@ -123,11 +132,14 @@ public class Vezerlo {
         jobbPanel.osszesIkonGombotAktival(false); 
         jatekVegeFrame = new JatekVegeFrame();
         jatekVegePanel = jatekVegeFrame.getJatekVegePanel2();
+        jatekVegePanel.setVezerlo(this);
         sugoFrame = new SugoFrame();
         sugoFrame.getSugoPanel2().setVezerlo(this);
         bundleBeallitas("hu");  
     }
-    
+    /**
+     * Egy új játékhoz szükséges alapbeállitásokat végzi el.
+     */
         public void alaphelyzetbeallit() {
         kirajzolandoKepek.clear();
         jobbPanel.ujJatekGombotBeallit(true);
@@ -145,7 +157,10 @@ public class Vezerlo {
     }
 
 
-    
+    /**
+     * A jobb panelen kiválasztott ikont a bal panel megfelelő helyére helyezi.
+     * @param iconIndex 
+     */
     public void ikontBerak(int iconIndex) {
         Image valasztottKep = kepek.get(iconIndex-1);
 //        Image kep, int szelesseg, int magassag, int kepX, int kepY
@@ -191,6 +206,9 @@ public class Vezerlo {
 
     }
 
+    /**
+     * Ikonok, valamint kiértékelő képek listájának feltöltése.
+     */
     void kepFeltoltes() {
                 Image kep;
         for (int i = 1; i < IKON_SZAM+1; i++) {
@@ -204,7 +222,9 @@ public class Vezerlo {
     }
 
 
-
+/**
+ * Ha a játékos meggondolta magát, kitörli a legutolsó ikont a bal panel legfelső sorából.
+ */
     public void visszaVon() {
         vizszintesKor--;
         int index = tmpikonok.size()-1;
@@ -219,10 +239,11 @@ public class Vezerlo {
             jobbPanel.keszenAlloGombBeallit(false);
         }
     }
-
+/**
+ * "Kész" gomb hatására kezeli a gombaktivitást, és meghívja a szükséges további metódusokat.
+ */
     public void keszenallas() {
         kiertekel();
-
         fuggolegesKor++;
         vizszintesKor=1;
         for (Ikon ikon : tmpikonok) {
@@ -236,6 +257,9 @@ public class Vezerlo {
         }
     }
 
+    /**
+     * A bal panel tetején lévő, kapu mögötti képeket random kiválasztja - ezeket kell a játékosnak kitalálnia.
+     */
     public void megoldastGyart() {
         Ikon ikon;
         Image kep = null;
@@ -259,6 +283,10 @@ public class Vezerlo {
         megoldastKitakar();
     }
 
+    
+    /**
+     * Megvizsgálja a tippeket, majd kiválasztja a megfelelő színű madarakat. Ha nyert, vagy vége a körök számának, befejezi a játékot, és feldobja a játék vége ablakot.
+     */
     private void kiertekel() {
         Ikon ikon;
         Image kep;
@@ -328,6 +356,9 @@ public class Vezerlo {
         frame.setState(Frame.ICONIFIED);
     }
 
+    /**
+     * A két kaput a megoldás ikonok fölé helyezi.
+     */
     private void megoldastKitakar() {
         if(fakapu!=null&&racs!=null)
         {
@@ -347,11 +378,13 @@ public class Vezerlo {
         balPanel.repaint();
     }
 
+    /**
+     * A kitakaráshoz szükséges "alsó" kaput felhúzza.
+     */
     public void fakaputindit() {
         fakapu.setFakapu(true);
         fakapu.start();
     }
-
 
     public void zeneInditas() {
         zene = new Zene();
@@ -360,6 +393,9 @@ public class Vezerlo {
         zene.start();
     }
 
+     /**
+     * A kitakaráshoz szükséges "felső" kaput felemeli.
+     */
     private void racsotLevisz() {
         if(racsHang != null)
         racsHang.setAktiv(false);
@@ -370,31 +406,41 @@ public class Vezerlo {
         racs.start();
     }
 
-    public void sugotMegnyit() {
-        sugoFrame.setVisible(true);
-        
-    }
-
-    public void sugotElrejt() {
-        sugoFrame.setVisible(false);
+    /**
+     * Kezeli a súgó ablak láthatóságát.
+     */
+    public void sugotLathatosagotBeallit(boolean b) {
+        sugoFrame.setVisible(b);
     }
     
-    
-    private void jatekVege() {
+    /**
+     * Játék befejezésekor (vége a köröknek, vagy nyert a játékos) beállítja az egyes paneleket.
+     */
+    public void jatekVege() {
         jobbPanel.ujJatekGombotBeallit(false);
         jobbPanel.osszesIkonGombotAktival(false);
         racs.setLezart(true);
+        jatekVegePaneltBeallit();
+        balPaneltBeallit();
+    }
+    
+    /**
+     * Átadja a játék vége panelnek, hogy nyert-e az illető, és hány lépés kellett neki.
+     */
+    public void jatekVegePaneltBeallit() {
         jatekVegePanel.setNyert(nyert);
-        jatekVegePanel.setVezerlo(this);
         jatekVegePanel.setLepesSzam(fuggolegesKor);
         jatekVegePanel.beallitas();
-        balpaneltBeallit();
     }
 
     public void jatekVegeFrametElrejt() {
         jatekVegeFrame.setVisible(false);
     }
 
+    
+    /**
+     * Kilépésre rákérdez, megerősítést vár új ablakban.
+     */
     public void dialogusAblak() {
         int dialogButton = JOptionPane.YES_NO_OPTION;
         JOptionPane dialogusAblak = new JOptionPane();
@@ -408,6 +454,10 @@ public class Vezerlo {
         }
     }
 
+    /**
+     * Kiválasztott nyelvűvé alakítja a programot.
+     * @param nyelv 
+     */
     public void bundleBeallitas(String nyelv) {
         if(nyelv=="hu")
         {
@@ -433,11 +483,22 @@ public class Vezerlo {
         zene.leall();
     }
     
-    public void balpaneltBeallit()
+    /**
+     * Átadja értékül a bal panelnek, a játékok és nyerések számát.
+     */
+    public void balPaneltBeallit()
     {
         jatekokSzama++;
         balPanel.setNyertjatekok(nyeresekSzama);
         balPanel.setOsszjatek(jatekokSzama);
         balPanel.lblFrissites();
     }
+
+    public void setSugoFrame(SugoFrame sugoFrame) {
+        this.sugoFrame = sugoFrame;
+    }
+    
+    
+
+
 }

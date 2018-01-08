@@ -5,6 +5,8 @@
  */
 package vezerlo;
 
+import felulet.BalPanel;
+import felulet.JobbPanel;
 import java.awt.Color;
 import javax.swing.UIManager;
 
@@ -123,4 +125,14 @@ public class MainFrame extends javax.swing.JFrame {
         jobbPanel1.setVezerlo(vezerlo);
         vezerlo.beallitas();
     }
+
+    public BalPanel getBalPanel1() {
+        return balPanel1;
+    }
+
+    public JobbPanel getJobbPanel1() {
+        return jobbPanel1;
+    }
+    
+    
 }

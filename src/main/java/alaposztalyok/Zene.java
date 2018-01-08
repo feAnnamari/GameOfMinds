@@ -56,6 +56,11 @@ public class Zene extends Thread{
     public String getZenefajlEleres() {
         return zenefajlEleres;
     }    
+
+    public Player getPlayer() {
+        return player;
+    }
+    
     
     
 }

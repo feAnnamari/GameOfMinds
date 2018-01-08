@@ -363,7 +363,7 @@ public class JobbPanel extends javax.swing.JPanel {
     private void btnUjJatekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUjJatekActionPerformed
         vezerlo.alaphelyzetbeallit();
         vezerlo.megoldastGyart();
-        vezerlo.balpaneltBeallit();
+        vezerlo.balPaneltBeallit();
     }//GEN-LAST:event_btnUjJatekActionPerformed
 
     private void btnTalcaraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTalcaraActionPerformed
@@ -375,7 +375,7 @@ public class JobbPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnKilepesActionPerformed
 
     private void btnSugoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSugoActionPerformed
-        vezerlo.sugotMegnyit();
+        vezerlo.sugotLathatosagotBeallit(true);
     }//GEN-LAST:event_btnSugoActionPerformed
 
     private void btnHunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHunActionPerformed

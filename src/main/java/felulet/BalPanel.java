@@ -11,6 +11,7 @@ import java.awt.Image;
 import java.util.ResourceBundle;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -191,6 +192,12 @@ public class BalPanel extends javax.swing.JPanel {
     public void lblFrissites() {
         lblNyertJatekok.setText(bundle.getString("nyertJatekok")+": \n" + nyertjatekok+"/"+osszjatek);
     }
+
+    public JLabel getLblNyertJatekok() {
+        return lblNyertJatekok;
+    }
+    
+    
 
 
 }
