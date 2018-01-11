@@ -189,6 +189,9 @@ public class BalPanel extends javax.swing.JPanel {
         lblNyolcadik.setVisible(false);
     }
 
+    /**
+     * Felirat frissítése
+     */
     public void lblFrissites() {
         lblNyertJatekok.setText(bundle.getString("nyertJatekok")+": \n" + nyertjatekok+"/"+osszjatek);
     }

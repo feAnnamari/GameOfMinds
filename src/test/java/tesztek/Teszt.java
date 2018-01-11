@@ -89,5 +89,4 @@ public class Teszt {
          zene.start();
          assertTrue(zene.isAlive());
      }
-
 }

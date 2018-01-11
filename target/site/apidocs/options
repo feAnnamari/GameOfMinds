@@ -1,0 +1,24 @@
+-classpath
+'C:/Users/Annamari/.m2/repository/javazoom/jlayer/1.0.1/jlayer-1.0.1.jar;C:/Users/Annamari/.m2/repository/unknown/binary/AbsoluteLayout/SNAPSHOT/AbsoluteLayout-SNAPSHOT.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'F:/EGYETEM/Dokumentumok/semester3/sajat/Prog3/VIZSGA/GameOfMinds/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2018. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'F:/EGYETEM/Dokumentumok/semester3/sajat/Prog3/VIZSGA/GameOfMinds/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'GameOfMinds 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/javase/8/docs/api' 'F:/EGYETEM/Dokumentumok/semester3/sajat/Prog3/VIZSGA/GameOfMinds/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'GameOfMinds 1.0-SNAPSHOT API'

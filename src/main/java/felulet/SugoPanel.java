@@ -29,8 +29,8 @@ public class SugoPanel extends javax.swing.JPanel {
         this.vezerlo = vezerlo;
     }
     
-        @Override
-        protected void paintComponent(Graphics g) {
+     @Override
+     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         int kezdox, kezdoy, szelesseg, magassag;
 	g.drawImage(hatter, 0, 0, this.getWidth(), this.getHeight(), this); 
@@ -83,7 +83,10 @@ public class SugoPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOK;
     // End of variables declaration//GEN-END:variables
-
+/**
+ * Beállítja a súgó hátterét a nyelvnek megfelelően.
+ * @param bundle 
+ */
     public void szovegBeallitas(ResourceBundle bundle) {
         hatter = new ImageIcon(this.getClass().getResource(bundle.getString("sugoHatterEleres"))).getImage();
         repaint();

@@ -126,6 +126,10 @@ public class JatekVegePanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblLepesSzam;
     // End of variables declaration//GEN-END:variables
 
+    
+    /**
+     * Attól függően hogy nyert-e az illető, beállítja a megfelelő hátteret és lépésszámot.
+     */
     public void beallitas() {
         if(nyert)
         {
@@ -141,6 +145,11 @@ public class JatekVegePanel extends javax.swing.JPanel {
         repaint();
     }
 
+    
+    /**
+     * Nyelvnek megfelelően beállítja a háttérképet, és a gombok feliratait.
+     * @param bundle 
+     */
     public void szovegBeallitas(ResourceBundle bundle) 
     {
         nyeresHatter = new ImageIcon(this.getClass().getResource(bundle.getString("nyeresHatterEleres"))).getImage();
