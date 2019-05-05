@@ -6,3 +6,5 @@ A JavaSE game.
 In the Game of Minds you should guess four symbols out of nine. Each of them represents a House from Game of Thrones. When you are ready with your guess, press the Ready button to see the result.
 
 The game based on the oldschool game, called 'Mastermind'.
+
+Sorry for the Hungarian variable names, it was my very first Java project :)
