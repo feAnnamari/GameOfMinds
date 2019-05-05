@@ -1,0 +1,3 @@
+# GameOfMinds
+A JavaSE game.
+
